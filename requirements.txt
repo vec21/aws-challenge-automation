@@ -1,0 +1,7 @@
+boto3==1.34.0
+click==8.1.7
+PyGithub==2.3.0
+reportlab==4.0.9
+pytest==8.3.2
+pulumi==3.120.0
+pulumi-aws==6.39.0
