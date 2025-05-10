@@ -4,4 +4,4 @@ PyGithub==2.3.0
 reportlab==4.0.9
 pytest==8.3.2
 pulumi==3.120.0
-pulumi-aws==6.39.0
+pulumi-aws==6.39.0 
