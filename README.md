@@ -2,94 +2,94 @@
 
 ![GitHub PR Analyzer](screenshots/banner.png)
 
-Uma ferramenta de linha de comando que automatiza a revisão de código em repositórios GitHub, gerando relatórios detalhados em PDF e disponibilizando-os em uma interface web. 🚀
+A command-line tool that automates code review in GitHub repositories, generating detailed PDF reports and making them available through a web interface. 🚀
 
-## Funcionalidades 🎯
+## Features 🎯
 
-* **Análise de Pull Requests** 📋: Extrai informações detalhadas sobre PRs (abertos, fechados ou todos)
-* **Análise de Código** 🔍: Detecta problemas como TODOs, FIXMEs e arquivos com muitas alterações
-* **Filtro por Data** 🗓️: Permite analisar PRs criados nos últimos N dias
-* **Suporte para Múltiplos Repositórios** 📦: Analisa vários repositórios em um único relatório
-* **Relatórios em PDF** 📄: Gera relatórios detalhados em formato PDF
-* **Interface Web** 🌐: Visualize todos os relatórios em uma interface web amigável
-* **Notificações por Email** 📧: Receba alertas quando novos relatórios são gerados
+* **Pull Request Analysis** 📋: Extracts detailed information about PRs (open, closed, or all)
+* **Code Analysis** 🔍: Detects issues like TODOs, FIXMEs, and files with many changes
+* **Date Filtering** 🗓️: Allows analyzing PRs created in the last N days
+* **Multiple Repository Support** 📦: Analyzes multiple repositories in a single report
+* **PDF Reports** 📄: Generates detailed reports in PDF format
+* **Web Interface** 🌐: View all reports in a user-friendly web interface
+* **Email Notifications** 📧: Receive alerts when new reports are generated
 
-## Pré-requisitos ✅
+## Prerequisites ✅
 
 * Python 3.9+ 🐍
-* Conta AWS com acesso para criar recursos (S3, Lambda, SNS) ☁️
-* Token de acesso pessoal do GitHub 🔑
-* Pulumi CLI instalado ⚙️
+* AWS account with access to create resources (S3, Lambda, SNS) ☁️
+* GitHub personal access token 🔑
+* Pulumi CLI installed ⚙️
 
-## Instalação 🛠️
+## Installation 🛠️
 
-1. Clone o repositório:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/vec21/aws-challenge-automation.git
    cd aws-challenge-automation
    ```
 
-2. Crie e ative um ambiente virtual:
+2. Create and activate a virtual environment:
 
    ```bash
    python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scripts\activate
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Instale as dependências:
+3. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Configure o token do GitHub:
+4. Configure the GitHub token:
 
    ```bash
-   export GITHUB_TOKEN=seu_token_github
-   # OU
-   pulumi config set github_token seu_token_github --secret
+   export GITHUB_TOKEN=your_github_token
+   # OR
+   pulumi config set github_token your_github_token --secret
    ```
 
-5. Configure a infraestrutura AWS com Pulumi:
+5. Configure AWS infrastructure with Pulumi:
 
    ```bash
    pulumi up
    ```
 
-## Uso 🚀
+## Usage 🚀
 
-### **Comandos Básicos** 🖥️
+### **Basic Commands** 🖥️
 
 ```bash
-   # Analisar um repositório 🌟
-   python src/cli.py review-code --repo usuario/repositorio
+   # Analyze a repository 🌟
+   python src/cli.py review-code --repo username/repository
 
-   # Analisar com estado específico (open, closed, all) 🔄
-   python src/cli.py review-code --repo usuario/repositorio --state closed
+   # Analyze with specific state (open, closed, all) 🔄
+   python src/cli.py review-code --repo username/repository --state closed
 
-   # Analisar com limite de dias 🗓️
-   python src/cli.py review-code --repo usuario/repositorio --days 14
+   # Analyze with day limit 🗓️
+   python src/cli.py review-code --repo username/repository --days 14
 
-   # Realizar análise de código 🔍
-   python src/cli.py review-code --repo usuario/repositorio --analyze
+   # Perform code analysis 🔍
+   python src/cli.py review-code --repo username/repository --analyze
 
-   # Analisar múltiplos repositórios 📦
-   python src/cli.py review-code --repo "usuario/repo1,usuario/repo2"
+   # Analyze multiple repositories 📦
+   python src/cli.py review-code --repo "username/repo1,username/repo2"
 
-   # Enviar para S3 e gerar interface web ☁️
-   python src/cli.py review-code --repo usuario/repositorio --bucket nome-do-bucket
+   # Upload to S3 and generate web interface ☁️
+   python src/cli.py review-code --repo username/repository --bucket bucket-name
 
-   # Enviar notificação por email 📧
-   python src/cli.py review-code --repo usuario/repositorio --notify --email seu.email@exemplo.com
+   # Send email notification 📧
+   python src/cli.py review-code --repo username/repository --notify --email your.email@example.com
 
-   # Limitar o número de PRs processados 📉
-   python src/cli.py review-code --repo usuario/repositorio --limit 10
+   # Limit the number of processed PRs 📉
+   python src/cli.py review-code --repo username/repository --limit 10
 ```
 
-## **Exemplo Completo** 🌈
+## **Complete Example** 🌈
 
-### 🔍 Analisar um repositório
+### 🔍 Analyze a repository
 
 ```bash
 python src/cli.py review-code --repo torvalds/linux
@@ -107,9 +107,9 @@ Processing PR #1227 (3/100)
 PDF report generated: linux_open.pdf 📄
 ```
 
-📄 [Ver relatório PDF](screenshots/linux_open.pdf)
+📄 [View PDF report](screenshots/linux_open.pdf)
 
-### 🟢 Analisar com estado específico (ex: fechados)
+### 🟢 Analyze with specific state (e.g., closed)
 
 ```bash
 python src/cli.py review-code --repo torvalds/linux --state closed
@@ -127,9 +127,9 @@ Processing PR #1217 (3/100)
 PDF report generated: linux_closed.pdf 📄
 ```
 
-📄 [Analisar estado fechado](screenshots/linux_closed.pdf)
+📄 [View closed state analysis](screenshots/linux_closed.pdf)
 
-### 🗓️ Analisar com limite de dias (últimos 14 dias)
+### 🗓️ Analyze with day limit (last 14 days)
 
 ```bash
 python src/cli.py review-code --repo microsoft/vscode --days 14
@@ -147,9 +147,9 @@ Processing PR #248552 (3/100)
 PDF report generated: vscode_open.pdf 📄
 ```
 
-📄 [Ver relatório PDF (últimos 14 dias)](screenshots/vscode_open.pdf)
+📄 [View PDF report (last 14 days)](screenshots/vscode_open.pdf)
 
-### 🧠 Realizar análise de código
+### 🧠 Perform code analysis
 
 ```bash
 python src/cli.py review-code --repo tensorflow/tensorflow --analyze
@@ -169,9 +169,9 @@ Limit of 100 PRs reached. Use --limit to increase.
 PDF report generated: tensorflow_open.pdf 📄
 ```
 
-📄 [Ver a Análise de código](screenshots/tensorflow_open.pdf)
+📄 [View code analysis](screenshots/tensorflow_open.pdf)
 
-### 📦 Analisar múltiplos repositórios
+### 📦 Analyze multiple repositories
 
 ```bash
 python src/cli.py review-code --repo "microsoft/vscode,tensorflow/tensorflow"
@@ -200,9 +200,9 @@ Limit of 100 PRs reached. Use --limit to increase.
 PDF report generated: multi-repos_open.pdf 📄
 ```
 
-📄 [Ver múltiplos repositórios](screenshots/multi-repos_open.pdf)
+📄 [View multiple repositories](screenshots/multi-repos_open.pdf)
 
-### ☁️ Enviar para S3 e gerar interface web
+### ☁️ Upload to S3 and generate web interface
 
 ```bash
 python src/cli.py review-code --repo vercel/next.js --bucket vec21-aws-challenge
@@ -224,9 +224,9 @@ PDF report generated: next.js_open.pdf 📄
 Report uploaded to S3: https://vec21-aws-challenge.s3.amazonaws.com/reports/2025-05-11/next.js_open_20250511_013336.pdf
 ```
 
-📄 [Ver relatório PDF](https://vec21-aws-challenge.s3.amazonaws.com/reports/2025-05-11/next.js_open_20250511_013336.pdf)
+📄 [View PDF report](https://vec21-aws-challenge.s3.amazonaws.com/reports/2025-05-11/next.js_open_20250511_013336.pdf)
 
-### 📧 Enviar notificação por email
+### 📧 Send email notification
 
 ```bash
 python src/cli.py review-code --repo torvalds/linux --notify --email veccpro@gmail.com
@@ -247,9 +247,9 @@ PDF report generated: linux_open.pdf 📄
 Notification sent to: veccpro@gmail.com 📧
 ```
 
-![Notificação por email](screenshots/email_notification.png)
+![Email notification](screenshots/email_notification.png)
 
-### 📉 Limitar o número de PRs processados (ex: 10 PRs)
+### 📉 Limit the number of processed PRs (e.g., 10 PRs)
 
 ```bash
 python src/cli.py review-code --repo vercel/next.js --limit 10
@@ -275,32 +275,32 @@ Limit of 10 PRs reached. Use --limit to increase.
 PDF report generated: next.js_open.pdf 📄
 ```
 
-📄 [Ver relatório](screenshots/next.js_open.pdf)
+📄 [View report](screenshots/next.js_open.pdf)
 
-## Interface Web 🌐
+## Web Interface 🌐
 
-Após gerar relatórios e enviá-los para o S3, você pode acessar a interface web para visualizar todos os relatórios disponíveis:
+After generating reports and uploading them to S3, you can access the web interface to view all available reports:
 
-**URL de Acesso:**
-[Visualizar Relatórios](http://vec21-aws-challenge.s3-website-us-east-1.amazonaws.com)
+**Access URL:**
+[View Reports](http://vec21-aws-challenge.s3-website-us-east-1.amazonaws.com)
 
-A interface web permite:
+The web interface allows you to:
 
-* Visualizar todos os relatórios gerados 📋
-* Buscar relatórios por nome, repositório ou estado 🔍
-* Baixar os relatórios em PDF 📥
-* Ver detalhes como data de criação, tamanho e conteúdo ℹ️
+* View all generated reports 📋
+* Search reports by name, repository, or state 🔍
+* Download PDF reports 📥
+* See details such as creation date, size, and content ℹ️
 
-Para atualizar manualmente a interface web:
+To manually update the web interface:
 
 ```bash
 export BUCKET_NAME=vec21-aws-challenge
 python src/web_interface.py
 ```
 
-![Interface Web](screenshots/web_interface.png)
+![Web Interface](screenshots/web_interface.png)
 
-## Arquitetura 🏗️
+## Architecture 🏗️
 
 ```bash
 
@@ -350,70 +350,72 @@ python src/web_interface.py
                                   +-----------------+                +-----------------+
 ```
 
-*Gerado por **Amazon Q** 🤖*
+*Generated by **Amazon Q** 🤖*
 
-O projeto utiliza os seguintes serviços AWS:
+The project uses the following AWS services:
 
-* **S3** ☁️: Armazenamento de relatórios PDF e hospedagem da interface web
-* **Lambda** ⚡: Execução programada da análise de código
-* **SNS** 📬: Envio de notificações por email
-* **CloudWatch Events** ⏰: Agendamento de execuções periódicas
+* **S3** ☁️: Storage for PDF reports and web interface hosting
+* **Lambda** ⚡: Scheduled execution of code analysis
+* **SNS** 📬: Email notification delivery
+* **CloudWatch Events** ⏰: Scheduling of periodic executions
 
-## Como o Amazon Q Developer ajudou 🧠
+## How Amazon Q Developer Helped 🧠
 
-O Amazon Q Developer foi fundamental no desenvolvimento desta ferramenta através de seus comandos especializados:
+![Amazon Q Developer in action](screenshots/amazonQ.png)
 
-### `/dev` - Desenvolvimento de Código 💻
+Amazon Q Developer was instrumental in developing this tool through its specialized commands:
 
-* Gerou o esqueleto inicial da CLI com integração GitHub e S3 🛠️
-* Implementou a estrutura base do projeto usando Pulumi para infraestrutura AWS 🏗️
-* Criou a função Lambda para execução programada da análise ⚡
-* Desenvolveu a integração com SNS para notificações por email 📧
+### `/dev` - Code Development 💻
 
-### `/review` - Revisão e Otimização 🔍
+* Generated the initial CLI skeleton with GitHub and S3 integration 🛠️
+* Implemented the project's base structure using Pulumi for AWS infrastructure 🏗️
+* Created the Lambda function for scheduled analysis execution ⚡
+* Developed SNS integration for email notifications 📧
 
-* Otimizou o código em `src/cli.py` adicionando mecanismos de retry para lidar com limites de taxa da API ⚙️
-* Melhorou a geração de relatórios PDF com tabelas e formatação avançada 📄
-* Sugeriu correções para problemas de comparação de datas com diferentes fusos horários 🌐
-* Identificou e corrigiu potenciais problemas de segurança 🔒
+### `/review` - Review and Optimization 🔍
 
-### `/test` - Geração de Testes 🧪
+* Optimized code in `src/cli.py` by adding retry mechanisms to handle API rate limits ⚙️
+* Improved PDF report generation with tables and advanced formatting 📄
+* Suggested fixes for date comparison issues with different time zones 🌐
+* Identified and fixed potential security issues 🔒
 
-* Criou testes unitários para as principais funções do projeto ✅
-* Implementou testes de integração para verificar o fluxo completo 🔄
-* Gerou fixtures e mocks para simular interações com serviços externos 🎭
-* Configurou a estrutura de testes com pytest 🛠️
+### `/test` - Test Generation 🧪
 
-### `/doc` - Documentação 📝
+* Created unit tests for the project's main functions ✅
+* Implemented integration tests to verify the complete flow 🔄
+* Generated fixtures and mocks to simulate interactions with external services 🎭
+* Configured the test structure with pytest 🛠️
 
-* Gerou documentação detalhada para as funções e classes 📚
-* Criou o diagrama de arquitetura para visualizar o fluxo de dados 📊
-* Produziu exemplos de uso para cada funcionalidade 📖
-* Desenvolveu o README completo com instruções de instalação e uso 📜
+### `/doc` - Documentation 📝
 
-O Amazon Q ajudou a implementar as 5 funcionalidades principais:
+* Generated detailed documentation for functions and classes 📚
+* Created the architecture diagram to visualize data flow 📊
+* Produced usage examples for each feature 📖
+* Developed the complete README with installation and usage instructions 📜
 
-1. **Análise de código** 🔍: Detectando problemas como TODOs, FIXMEs e arquivos com muitas alterações
-2. **Filtro por data** 🗓️: Permitindo analisar PRs criados nos últimos N dias
-3. **Notificações por email** 📧: Enviando alertas quando novos relatórios são gerados
-4. **Suporte para múltiplos repositórios** 📦: Analisando vários repositórios em um único relatório
-5. **Interface web** 🌐: Disponibilizando uma interface amigável para visualizar os relatórios
+Amazon Q helped implement the 5 main features:
 
-## Testes 🧪
+1. **Code analysis** 🔍: Detecting issues like TODOs, FIXMEs, and files with many changes
+2. **Date filtering** 🗓️: Allowing analysis of PRs created in the last N days
+3. **Email notifications** 📧: Sending alerts when new reports are generated
+4. **Multiple repository support** 📦: Analyzing multiple repositories in a single report
+5. **Web interface** 🌐: Providing a user-friendly interface to view reports
 
-### O projeto inclui testes unitários e de integração:
+## Tests 🧪
+
+### The project includes unit and integration tests:
 
 ```bash
-# Instalar dependências de teste
+# Install test dependencies
 pip install -r requirements-test.txt
 
-# Executar todos os testes
+# Run all tests
 pytest
 
-# Executar testes com cobertura
+# Run tests with coverage
 pytest --cov=src
 ```
 
-## Licença 📜
+## License 📜
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+This project is licensed under the MIT license - see the [LICENSE](LICENSE) file for details.
